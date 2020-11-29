@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/json'
 require './game.rb'
+require_relative './schema.rb'
 
 class GameApp < Sinatra::Base
   games = [
@@ -19,5 +20,16 @@ class GameApp < Sinatra::Base
 
   get '/games/:id' do
     json games[params[:id].to_i - 1]
+  end
+
+  post '/graphql' do
+    body = JSON.parse request.body.read
+    puts "\n\n\n\n\n params[:query]: #{body["query"]} \n\n\n\n\n"
+    result = GameAppSchema.execute(
+      body["query"],
+      variables: params[:variables],
+      context: { current_user: nil },
+    )
+    json result
   end
 end
