@@ -1,5 +1,6 @@
 require 'graphql'
 require_relative './game_resource.rb'
+require_relative './games.rb'
 
 class QueryType < GraphQL::Schema::Object
   description "The query root of this schema"
@@ -9,6 +10,6 @@ class QueryType < GraphQL::Schema::Object
   end
 
   def games
-    Game.all
+    Games.all
   end
 end

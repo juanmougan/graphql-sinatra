@@ -2,13 +2,10 @@ require 'sinatra'
 require 'sinatra/json'
 require './game.rb'
 require_relative './schema.rb'
+require_relative './games.rb'
 
 class GameApp < Sinatra::Base
-  games = [
-    Game.new(1, 'Juan', 'María', 'IN_PROGRESS'),
-    Game.new(2, 'Carlos', 'Juana', 'FINISHED'),
-    Game.new(3, 'Lorena', 'Pedro', 'CREATED')
-  ]
+  games = Games.all
 
   get '/' do
     'It Works!'
