@@ -21,7 +21,6 @@ class GameApp < Sinatra::Base
 
   post '/graphql' do
     body = JSON.parse request.body.read
-    puts "\n\n\n\n\n params[:query]: #{body["query"]} \n\n\n\n\n"
     result = GameAppSchema.execute(
       body["query"],
       variables: params[:variables],

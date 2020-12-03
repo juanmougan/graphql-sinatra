@@ -3,6 +3,7 @@ require_relative 'base_object'
 require_relative './game_status.rb'
 
 class Types::Game < Types::BaseObject
+#class Types::Game < GraphQL::Schema::Object
   description 'Resembles a Game Object Type'
 
   field :id, ID, null: false
